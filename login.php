@@ -53,6 +53,17 @@
 				// kasutaja sisselogimise fn, failist functions.php
 				$login_response = $User->loginUser($email, $hash);
 				
+				//kasutaja logis edukalt sisse
+				if(isset($login_response->success)){
+					
+					// id, emaili
+					$_SESSION["logged_in_user_id"] = $login_response->user->id;
+					$_SESSION["logged_in_user_email"] = $login_response->user->email;
+					
+					header("Location: data.php");
+					
+				}
+				
 				
 			}
 

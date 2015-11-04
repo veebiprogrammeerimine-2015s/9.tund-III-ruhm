@@ -107,6 +107,12 @@ class User {
 			
 			$response->success = $success;
 			
+			$user = new StdClass();
+			$user->id = $id_from_db;
+			$user->email = $email_from_db;
+			
+			$response->user = $user;
+			
 		}else{
 			
 			// parool vale
