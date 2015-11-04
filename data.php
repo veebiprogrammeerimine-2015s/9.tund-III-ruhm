@@ -140,3 +140,21 @@
 </form>
 
 <?php endif; ?>
+<h2>Galerii</h2>
+<?php 
+
+	
+	$file_array = scandir($target_dir);
+	var_dump($file_array);
+	
+	// iga faili nime kohta
+	for($i = 0; $i < count($file_array); $i++){
+		
+		echo "<a href='".$target_dir.$file_array[$i]."'>".$file_array[$i]."</a><br>";
+		
+	}
+
+?>
+
+
+
