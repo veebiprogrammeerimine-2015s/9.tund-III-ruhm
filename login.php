@@ -88,7 +88,9 @@
 					
 					// kasutaja loomise fn, failist functions.php,
 					// saadame kaasa muutujad
-					createUser($create_email, $hash);
+					
+					// fn User klassist
+					$User->createUser($create_email, $hash);
 					
 				}
 		} // create if end
