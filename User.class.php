@@ -70,25 +70,33 @@ class User {
 	}
 	
 	function loginUser($email, $hash){
+		
+		$response = new StdClass();
+		
+		//kas selline email on juba olemas
+		$stmt = $this->connection->prepare("SELECT id FROM user_sample WHERE email=?");
+		$stmt->bind_param("s", $create_email);
+		$stmt->bind_result($id);
+		$stmt->execute();
+		
+		// ei olnud sellist e-posti
+		if(!$stmt->fetch()){
+			
+		}
+		
 
 		$stmt = $this->connection->prepare("SELECT id, email FROM user_sample WHERE email=? AND password=?");
 		$stmt->bind_param("ss", $email, $hash);
 		$stmt->bind_result($id_from_db, $email_from_db);
 		$stmt->execute();
 		if($stmt->fetch()){
-			// ab'i oli midagi
-			echo "Email ja parool õiged, kasutaja id=".$id_from_db;
 			
-			// tekitan sessiooni muutujad
-			$_SESSION["logged_in_user_id"] = $id_from_db;
-			$_SESSION["logged_in_user_email"] = $email_from_db;
-			
-			//suunan data.php lehele
-			header("Location: data.php");
+			// kõik õige 
 			
 		}else{
-			// ei leidnud
-			echo "Wrong credentials!";
+			
+			// parool vale
+			
 		}
 		$stmt->close();
 	}
