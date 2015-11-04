@@ -51,7 +51,7 @@
 				$hash = hash("sha512", $password);
 				
 				// kasutaja sisselogimise fn, failist functions.php
-				loginUser($email, $hash);
+				$User->loginUser($email, $hash);
 				
 				
 			}
